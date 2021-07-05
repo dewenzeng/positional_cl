@@ -1,0 +1,8 @@
+# results
+results/
+
+# logs
+runs/
+
+# vscode
+.vscode/
