@@ -1,6 +1,6 @@
 ### Positional Contrastive Learning
 
-Implementation of paper in 'Positional Contrastive Learning for Volumetric Medical Image Segmentation' (paper @ MICCAI'21)
+Implementation of paper in 'Positional Contrastive Learning for Volumetric Medical Image Segmentation' ([paper](https://arxiv.org/pdf/2106.09157.pdf) @ MICCAI'21)
 
 <p align="center">
   <img src="figures/overview.jpg" width="700">
