@@ -23,7 +23,7 @@ parser.add_argument('--cross_vali_num', type=int, default=5)
 
 # Model
 parser.add_argument("--initial_filter_size", type=int, default=48)
-parser.add_argument("--patch_size", type=tuple, default=(512,512))
+parser.add_argument("--patch_size", nargs='+', type=int)
 parser.add_argument("--classes", type=int, default=4)
 
 # Train
@@ -58,4 +58,5 @@ def save_args(obj, defaults, kwargs):
 def get_config():
     config = parser.parse_args()
     config.data_dir = os.path.expanduser(config.data_dir)
+    config.patch_size = tuple(config.patch_size)
     return config
