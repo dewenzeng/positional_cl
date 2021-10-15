@@ -8,7 +8,7 @@ Implementation of paper in 'Positional Contrastive Learning for Volumetric Medic
 
 ### Dataset
  - Congenital Heart Disease (CHD) dataset, CT, [link](https://github.com/XiaoweiXu/Whole-heart-and-great-vessel-segmentation-of-chd_segmentation)
- - MMWHS dataset, CT, [link](https://zmiclab.github.io/projects/mmwhs/)
+ - MMWHS dataset, CT, [link](http://www.sdspeople.fudan.edu.cn/zhuangxiahai/0/mmwhs/)
  - ACDC dataset, MRI, [link](https://www.creatis.insa-lyon.fr/Challenge/acdc/databases.html)
  - HVSMR dataset, MRI, [link](http://segchd.csail.mit.edu/)
 
@@ -57,7 +57,7 @@ Please refer to [run_script.sh](run_script.sh) for more experimental running com
 
 ### Pretrained model
 
-The pretrained model using PCL can be found [here](https://zmiclab.github.io/projects/mmwhs/). Note for CHD, the initial_filter_size is 32. For ACDC, the initial_filter_size is 48.
+The pretrained model using PCL can be found [here](https://drive.google.com/drive/folders/16vnZj9c5Mp-9lazmHtR-01AxHGUe0q_6?usp=sharing). Note that for CHD, the initial_filter_size is 32. For ACDC, the initial_filter_size is 48.
 
 ### How to cite this code
 
