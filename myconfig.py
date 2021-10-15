@@ -47,7 +47,6 @@ parser.add_argument("--contrastive_method", type=str, default='simclr', help='si
 
 # Loss
 parser.add_argument("--temp", type=float, default=0.1)
-parser.add_argument("--theta", type=float, default=0.05)
 parser.add_argument("--slice_threshold", type=float, default=0.05)
 
 def save_args(obj, defaults, kwargs):

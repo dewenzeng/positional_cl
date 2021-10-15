@@ -6,3 +6,9 @@ runs/
 
 # vscode
 .vscode/
+
+train_job.sh
+
+test.py
+
+__pycache__

@@ -219,6 +219,3 @@ if __name__ == "__main__":
     run_preprocessing_labeled(args.i, args.out_labeled, True)
     run_preprocessing_unlabeled(args.i, args.out_unlabeled, True)
     # run_preprocessing(args.i, args.out3d, False)
-
-# example
-# python generate_acdc_dataset.py -i /afs/crc.nd.edu/user/d/dzeng2/data/acdc/training/ -out_labeled /afs/crc.nd.edu/user/d/dzeng2/data/acdc/test/supervised -out_unlabeled /afs/crc.nd.edu/user/d/dzeng2/data/acdc/test/contrastive
