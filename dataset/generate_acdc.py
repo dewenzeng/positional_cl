@@ -12,6 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# This process code is build on nnUNet:https://github.com/MIC-DKFZ/nnUNet
+# Images are saved as np.float
 
 import SimpleITK as sitk
 import os
@@ -214,7 +216,6 @@ if __name__ == "__main__":
     parser.add_argument("-i", help="folder where the extracted training data is", type=str)
     parser.add_argument("-out_labeled", help="folder where to save the data for the 2d network", type=str)
     parser.add_argument("-out_unlabeled", help="folder where to save the data for the 2d network", type=str)
-    # parser.add_argument("-out3d", help="folder where to save the data for the 3d network", type=str)
     args = parser.parse_args()
     run_preprocessing_labeled(args.i, args.out_labeled, True)
     run_preprocessing_unlabeled(args.i, args.out_unlabeled, True)

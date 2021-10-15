@@ -1,7 +1,6 @@
 import SimpleITK as sitk
 import os
 import numpy as np
-from utils import *
 from batchgenerators.utilities.file_and_folder_operations import *
 import pickle
 from collections import OrderedDict

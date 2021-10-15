@@ -49,7 +49,7 @@ def generate_mmwhs_dataset(data_dir, save_dir):
         os.mkdir(os.path.join(save_dir, 'supervised'))
     i = 1001
     results = OrderedDict()
-    for j in range(10):
+    for j in range(20):
         print(f'processing ct_train_{i}...')
         image_path = os.path.join(data_dir,'ct_train_'+str(i)+'_image.nii.gz')
         label_path = os.path.join(data_dir,'ct_train_'+str(i)+'_label.nii.gz')

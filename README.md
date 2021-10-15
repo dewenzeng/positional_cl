@@ -25,6 +25,8 @@ python generate_mmwhs.py -indir raw_image_dir -labeled_outdir save_dir_for_unlab
 python generate_hvsmr.py -indir raw_image_dir -labeled_outdir save_dir_for_unlabeled_data
 ```
 
+Preprocessed dataset can be accessed [here](https://drive.google.com/drive/folders/1IYmqNUB0ZtkwTvCPqMJB5BvvorBjQXfK?usp=sharing).
+
 ### Running
 
 (1) PCL on CHD dataset
@@ -57,7 +59,7 @@ Please refer to [run_script.sh](run_script.sh) for more experimental running com
 
 ### Pretrained model
 
-The pretrained model using PCL can be found [here](https://drive.google.com/drive/folders/16vnZj9c5Mp-9lazmHtR-01AxHGUe0q_6?usp=sharing). Note that for CHD, the initial_filter_size is 32. For ACDC, the initial_filter_size is 48.
+The pretrained model using PCL can be found [here](https://drive.google.com/drive/folders/16vnZj9c5Mp-9lazmHtR-01AxHGUe0q_6?usp=sharing). Note that for CHD, the initial_filter_size is 32. For ACDC, the initial_filter_size is 48 to align with a SOTA solution [link](https://github.com/MIC-DKFZ/ACDC2017).
 
 ### How to cite this code
 
