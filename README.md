@@ -25,8 +25,6 @@ python generate_mmwhs.py -indir raw_image_dir -labeled_outdir save_dir_for_unlab
 python generate_hvsmr.py -indir raw_image_dir -labeled_outdir save_dir_for_unlabeled_data
 ```
 
-Preprocessed dataset can be accessed [here](https://drive.google.com/drive/folders/1IYmqNUB0ZtkwTvCPqMJB5BvvorBjQXfK?usp=sharing).
-
 ### Running
 
 (1) PCL on CHD dataset
