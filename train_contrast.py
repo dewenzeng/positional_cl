@@ -53,7 +53,6 @@ def main():
     num_parameters = sum([l.nelement() for l in model.module.parameters()])
     logger.print(f"number of parameters: {num_parameters}")
 
-    # initialize dataloader, do we really need to normalize our data?
     if args.dataset == 'chd':
         training_keys = os.listdir(os.path.join(args.data_dir,'train'))
         training_keys.sort()

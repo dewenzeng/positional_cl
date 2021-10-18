@@ -182,7 +182,7 @@ class UNet2D_classification(nn.Module):
         x_1, _, _, _, _ = self.encoder(x)
         out = self.head(x_1)
 
-        return out, out, out
+        return out
 
 
 if __name__ == '__main__':
