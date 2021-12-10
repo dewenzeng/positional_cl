@@ -12,3 +12,5 @@ train_job.sh
 test.py
 
 __pycache__
+
+run.sh

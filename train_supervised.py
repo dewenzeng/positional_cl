@@ -97,7 +97,7 @@ def run(fold, writer, args):
     best_dice = 0
     for epoch in range(args.epochs):
         # train for one epoch
-        train_loss, train_dice = train(train_loader, model, criterion, epoch, optimizer, scheduler, writer, fold, logger, args)
+        train_loss, train_dice = train(train_loader, model, criterion, epoch, optimizer, scheduler, logger, args)
         writer.add_scalar('training_loss_fold'+str(fold), train_loss, epoch)
         writer.add_scalar('training_dice_fold'+str(fold), train_dice, epoch)
         writer.add_scalar('learning_rate_fold'+str(fold), optimizer.param_groups[0]['lr'], epoch)
@@ -105,10 +105,10 @@ def run(fold, writer, args):
             # evaluate for one epoch
             val_dice = validate(validate_loader, model, epoch, logger, args)
 
-            logger.print('\n Epoch: {0}\t'
+            logger.print('Epoch: {0}\t'
                             'Training Loss {train_loss:.4f} \t'
                             'Validation Dice {val_dice:.4f} \t'
-                            .format(epoch + 1, train_loss=train_loss, val_dice=val_dice))
+                            .format(epoch, train_loss=train_loss, val_dice=val_dice))
 
             if best_dice < val_dice:
                 best_dice = val_dice
@@ -140,7 +140,7 @@ def train(data_loader, model, criterion, epoch, optimizer, scheduler, logger, ar
         x_out = F.softmax(x_out, dim=1)
         metric_val.update(label.long().squeeze(dim=1), x_out)
         _, _, Dice = metric_val.get()
-        logger.print(f"epoch:{epoch}, batch:{batch_idx}/{len(data_loader)}, lr:{optimizer.param_groups[0]['lr']:.7f}, loss:{losses.avg:.4f}, mean Dice:{Dice:.4f}")
+        logger.print(f"Training epoch:{epoch}, batch:{batch_idx}/{len(data_loader)}, lr:{optimizer.param_groups[0]['lr']:.6f}, loss:{losses.avg:.4f}, mean Dice:{Dice:.4f}")
     pixAcc, mIoU, mDice = metric_val.get()
     return losses.avg, mDice
 
@@ -157,7 +157,7 @@ def validate(data_loader, model, epoch, logger, args):
             x_out = F.softmax(x_out, dim=1)
             metric_val.update(label.long().squeeze(dim=1), x_out)
             pixAcc, mIoU, Dice = metric_val.get()
-            logger.print(f"epoch:{epoch}, batch:{batch_idx}/{len(data_loader)}, mean Dice:{Dice}")
+            logger.print(f"Validation epoch:{epoch}, batch:{batch_idx}/{len(data_loader)}, mean Dice:{Dice}")
     pixAcc, mIoU, Dice = metric_val.get()
     return Dice
 

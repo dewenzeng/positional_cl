@@ -11,11 +11,11 @@ python train_contrast.py --device cuda:0 --batch_size 32 --epochs 300 --data_dir
 
 # supervised finetuning
 # train from scratch on chd dataset using 40 samples.
-python train_supervised.py --device cuda:0 --batch_size 10 --epochs 100 --data_dir your_data_dir --lr 5e-5 --min_lr 5e-6 --dataset chd --patch_size 512 512 \
+python train_supervised.py --device cuda:0 --batch_size 10 --epochs 100 --data_dir your_data_dir --lr 1e-4 --min_lr 1e-6 --dataset chd --patch_size 512 512 \
 --experiment_name supervised_chd_scratch_sample_40_ --initial_filter_size 32 --classes 8 --enable_few_data --sampling_k 40
 
 # train from pcl pretrained on chd dataset using 40 samples.
-python train_supervised.py --device cuda:0 --batch_size 10 --epochs 100 --data_dir your_data_dir --lr 5e-5 --min_lr 5e-6 --dataset chd --patch_size 512 512 \
+python train_supervised.py --device cuda:0 --batch_size 10 --epochs 100 --data_dir your_data_dir --lr 1e-4 --min_lr 1e-6 --dataset chd --patch_size 512 512 \
 --experiment_name supervised_chd_pcl_sample_40_ --initial_filter_size 32 --classes 8 --enable_few_data --sampling_k 40 \
 --restart --pretrained_model_path your_pretrained_model_path
 
