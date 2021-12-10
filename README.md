@@ -29,14 +29,14 @@ python generate_hvsmr.py -indir raw_image_dir -labeled_outdir save_dir_for_unlab
 
 (1) PCL on CHD dataset
 ```
-python train_contrast.py --device cuda:0 --batch_size 32 --epochs 300 --data_dir chd_dataset preprocessed_without_label/ --lr 0.1 --do_contrast --dataset chd --patch_size 512 512 \
+python train_contrast.py --device cuda:0 --batch_size 32 --epochs 300 --data_dir chd_dataset --lr 0.1 --do_contrast --dataset chd --patch_size 512 512 \
 --experiment_name contrast_chd_pcl_temp01_thresh01_ --slice_threshold 0.1 --temp 0.1 --initial_filter_size 32 --classes 512 --contrastive_method pcl
 ```
 
 (2) PCL on ACDC dataset
 ```
-python train_contrast.py --device cuda:0 --batch_size 48 --epochs 300 --data_dir acdc_dataset --lr 0.1 --do_contrast --dataset ACDC --patch_size 352 352 \
---experiment_name contrast_chd_pcl_temp01_thresh035_ --slice_threshold 0.35 --temp 0.1 --initial_filter_size 48 --classes 512 --contrastive_method pcl
+python train_contrast.py --device cuda:0 --batch_size 32 --epochs 300 --data_dir acdc_dataset --lr 0.1 --do_contrast --dataset acdc --patch_size 352 352 \
+--experiment_name contrast_acdc_pcl_temp01_thresh035_ --slice_threshold 0.35 --temp 0.1 --initial_filter_size 48 --classes 512 --contrastive_method pcl
 ```
 
 (3) Semi-supervised finetuning on CHD dataset on 40 samples using 5-fold cross validation

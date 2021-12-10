@@ -1,23 +1,14 @@
 import pickle
 import numpy as np
 import torch
-import random
-import cv2
-import torchvision
-import matplotlib.pyplot as plt
+import os
 from batchgenerators.utilities.file_and_folder_operations import *
-from batchgenerators.dataloading import MultiThreadedAugmenter
 from batchgenerators.transforms import Compose, RndTransform
 from batchgenerators.transforms import SpatialTransform, MirrorTransform
-from batchgenerators.transforms import GammaTransform, ConvertSegToOnehotTransform
 from batchgenerators.transforms import RandomCropTransform
 from torch.utils.data.dataset import Dataset
-import torchvision.transforms as tvt
-from PIL import Image
-import torchvision.transforms as transforms
-from skimage import segmentation
 from random import choice
-from utils import *
+from .utils import *
 
 class CHD(Dataset):
 
