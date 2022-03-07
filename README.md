@@ -63,10 +63,12 @@ The pretrained model using PCL can be found [here](https://drive.google.com/driv
 
 Please cite the original publication:
 ```
-@article{zeng2021positional,
-  title={Positional Contrastive Learning for VolumetricMedical Image Segmentation},
+@inproceedings{zeng2021positional,
+  title={Positional contrastive learning for volumetric medical image segmentation},
   author={Zeng, Dewen and Wu, Yawen and Hu, Xinrong and Xu, Xiaowei and Yuan, Haiyun and Huang, Meiping and Zhuang, Jian and Hu, Jingtong and Shi, Yiyu},
-  journal={arXiv preprint arXiv:2106.09157},
-  year={2021}
+  booktitle={International Conference on Medical Image Computing and Computer-Assisted Intervention},
+  pages={221--230},
+  year={2021},
+  organization={Springer}
 }
 ```
