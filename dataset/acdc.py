@@ -1,9 +1,9 @@
 import numpy as np
 import torch
 from batchgenerators.utilities.file_and_folder_operations import *
-from batchgenerators.transforms import Compose, RndTransform
-from batchgenerators.transforms import SpatialTransform, MirrorTransform
-from batchgenerators.transforms import RandomCropTransform
+from batchgenerators.transforms.abstract_transforms import Compose, RndTransform
+from batchgenerators.transforms.spatial_transforms import SpatialTransform, MirrorTransform
+from batchgenerators.transforms.crop_and_pad_transforms import RandomCropTransform
 from torch.utils.data.dataset import Dataset
 from random import choice
 from .utils import *

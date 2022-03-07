@@ -34,7 +34,7 @@ def main():
 
     # setup cuda
     args.device = torch.device(args.device if torch.cuda.is_available() else "cpu")
-    logger.print(f"the model will run on device {args.device}")
+    # logger.print(f"the model will run on device {args.device}")
 
     # create model
     logger.print("creating model ...")
@@ -48,7 +48,7 @@ def main():
         model.load_state_dict(save_model)
 
     model.to(args.device)
-    model = torch.nn.DataParallel(model, device_ids=args.multiple_device_id)
+    model = torch.nn.DataParallel(model)
 
     num_parameters = sum([l.nelement() for l in model.module.parameters()])
     logger.print(f"number of parameters: {num_parameters}")
@@ -76,6 +76,7 @@ def main():
                      .format(epoch + 1, train_loss=train_loss))
 
         writer.add_scalar('training_loss', train_loss, epoch)
+        writer.add_scalar('lr', optimizer.param_groups[0]['lr'], epoch)
 
         # save model
         save_dict = {"net": model.module.state_dict()}

@@ -5,7 +5,6 @@ parser = argparse.ArgumentParser()
 
 # Environment
 parser.add_argument("--device", type=str, default='cuda:0')
-parser.add_argument("--multiple_device_id", type=tuple, default=(0,1))
 parser.add_argument("--num_works", type=int, default=8)
 parser.add_argument("--exp_load", type=str, default=None)
 parser.add_argument('--save', metavar='SAVE', default='', help='saved folder')

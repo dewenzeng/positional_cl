@@ -4,11 +4,9 @@ import torch
 import torchvision
 import matplotlib.pyplot as plt
 from batchgenerators.utilities.file_and_folder_operations import *
-from batchgenerators.dataloading import MultiThreadedAugmenter
-from batchgenerators.transforms import Compose, RndTransform
-from batchgenerators.transforms import SpatialTransform, MirrorTransform
-from batchgenerators.transforms import GammaTransform, ConvertSegToOnehotTransform
-from batchgenerators.transforms import RandomCropTransform
+from batchgenerators.transforms.abstract_transforms import Compose, RndTransform
+from batchgenerators.transforms.spatial_transforms import SpatialTransform, MirrorTransform
+from batchgenerators.transforms.crop_and_pad_transforms import RandomCropTransform
 from torch.utils.data.dataset import Dataset
 from random import choice
 from .utils import *

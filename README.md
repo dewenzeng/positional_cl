@@ -29,26 +29,26 @@ python generate_hvsmr.py -indir raw_image_dir -labeled_outdir save_dir_for_unlab
 
 (1) PCL on CHD dataset
 ```
-python train_contrast.py --device cuda:0 --batch_size 32 --epochs 300 --data_dir chd_dataset --lr 0.1 --do_contrast --dataset chd --patch_size 512 512 \
+CUDA_VISIBLE_DEVICES=0,1 python train_contrast.py --device cuda:0 --batch_size 32 --epochs 300 --data_dir chd_dataset --lr 0.1 --do_contrast --dataset chd --patch_size 512 512 \
 --experiment_name contrast_chd_pcl_temp01_thresh01_ --slice_threshold 0.1 --temp 0.1 --initial_filter_size 32 --classes 512 --contrastive_method pcl
 ```
 
 (2) PCL on ACDC dataset
 ```
-python train_contrast.py --device cuda:0 --batch_size 32 --epochs 300 --data_dir acdc_dataset --lr 0.1 --do_contrast --dataset acdc --patch_size 352 352 \
+CUDA_VISIBLE_DEVICES=0,1 python train_contrast.py --device cuda:0 --batch_size 32 --epochs 300 --data_dir acdc_dataset --lr 0.1 --do_contrast --dataset acdc --patch_size 352 352 \
 --experiment_name contrast_acdc_pcl_temp01_thresh035_ --slice_threshold 0.35 --temp 0.1 --initial_filter_size 48 --classes 512 --contrastive_method pcl
 ```
 
 (3) Semi-supervised finetuning on CHD dataset on 40 samples using 5-fold cross validation
 ```
-python train_supervised.py --device cuda:0 --batch_size 10 --epochs 100 --data_dir chd_dataset --lr 5e-5 --min_lr 5e-6 --dataset chd --patch_size 512 512 \
+CUDA_VISIBLE_DEVICES=0,1 python train_supervised.py --device cuda:0 --batch_size 10 --epochs 100 --data_dir chd_dataset --lr 5e-5 --min_lr 5e-6 --dataset chd --patch_size 512 512 \
 --experiment_name supervised_chd_pcl_sample_40_ --initial_filter_size 32 --classes 8 --enable_few_data --sampling_k 40 \
 --restart --pretrained_model_path /afs/crc.nd.edu/user/d/dzeng2/positional_cl/results/contrast_pcl_2020-11-27_17-08-52/model/latest.pth
 ```
 
 (4) Transfer learning finetuning on MMWHS dataset on 10 samples using 5-fold cross validation
 ```
-python train_supervised.py --device cuda:0 --batch_size 10 --epochs 100 --data_dir mmwhs dataset --lr 5e-5 --min_lr 5e-6 --dataset MMWHS --patch_size 256 256 \
+CUDA_VISIBLE_DEVICES=0,1 python train_supervised.py --device cuda:0 --batch_size 10 --epochs 100 --data_dir mmwhs dataset --lr 5e-5 --min_lr 5e-6 --dataset MMWHS --patch_size 256 256 \
 --experiment_name supervised_chd_pcl_sample_40_ --initial_filter_size 48 --classes 8 --enable_few_data --sampling_k 10 \
 --restart --pretrained_model_path /afs/crc.nd.edu/user/d/dzeng2/positional_cl/results/contrast_pcl_2020-11-27_17-08-52/model/latest.pth
 ```
