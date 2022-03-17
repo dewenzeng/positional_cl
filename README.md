@@ -41,14 +41,14 @@ CUDA_VISIBLE_DEVICES=0,1 python train_contrast.py --device cuda:0 --batch_size 3
 
 (3) Semi-supervised finetuning on CHD dataset on 40 samples using 5-fold cross validation
 ```
-CUDA_VISIBLE_DEVICES=0,1 python train_supervised.py --device cuda:0 --batch_size 10 --epochs 100 --data_dir chd_dataset --lr 5e-5 --min_lr 5e-6 --dataset chd --patch_size 512 512 \
+CUDA_VISIBLE_DEVICES=0 python train_supervised.py --device cuda:0 --batch_size 10 --epochs 100 --data_dir chd_dataset --lr 5e-5 --min_lr 5e-6 --dataset chd --patch_size 512 512 \
 --experiment_name supervised_chd_pcl_sample_40_ --initial_filter_size 32 --classes 8 --enable_few_data --sampling_k 40 \
 --restart --pretrained_model_path /afs/crc.nd.edu/user/d/dzeng2/positional_cl/results/contrast_pcl_2020-11-27_17-08-52/model/latest.pth
 ```
 
 (4) Transfer learning finetuning on MMWHS dataset on 10 samples using 5-fold cross validation
 ```
-CUDA_VISIBLE_DEVICES=0,1 python train_supervised.py --device cuda:0 --batch_size 10 --epochs 100 --data_dir mmwhs dataset --lr 5e-5 --min_lr 5e-6 --dataset MMWHS --patch_size 256 256 \
+CUDA_VISIBLE_DEVICES=0 python train_supervised.py --device cuda:0 --batch_size 10 --epochs 100 --data_dir mmwhs dataset --lr 5e-5 --min_lr 5e-6 --dataset MMWHS --patch_size 256 256 \
 --experiment_name supervised_chd_pcl_sample_40_ --initial_filter_size 48 --classes 8 --enable_few_data --sampling_k 10 \
 --restart --pretrained_model_path /afs/crc.nd.edu/user/d/dzeng2/positional_cl/results/contrast_pcl_2020-11-27_17-08-52/model/latest.pth
 ```
