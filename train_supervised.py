@@ -164,7 +164,7 @@ def validate(data_loader, model, epoch, logger, args):
 if __name__ == '__main__':
     # initialize config
     args = get_config()
-    if args.save is '':
+    if args.save == '':
         args.save = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
     args.save_path = os.path.join(args.results_dir, args.experiment_name + args.save)
     if not os.path.exists(args.save_path):
