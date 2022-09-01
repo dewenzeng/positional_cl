@@ -1,8 +1,6 @@
 import os
 from datetime import datetime
 from utils import *
-import torch.backends.cudnn as cudnn
-import time
 from torch.autograd import Variable
 from loss.contrast_loss import SupConLoss
 from network.unet2d import UNet2D_classification
@@ -18,7 +16,7 @@ def main():
     # initialize config
     args = get_config()
 
-    if args.save is '':
+    if args.save == '':
         args.save = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
     save_path = os.path.join(args.results_dir, args.experiment_name + args.save)
     if not os.path.exists(save_path):

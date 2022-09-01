@@ -1,9 +1,6 @@
 import os
-import sys
 from datetime import datetime
 from utils import *
-import torch.backends.cudnn as cudnn
-import time
 import random
 from network.unet2d import UNet2D
 from dataset.chd import CHD
