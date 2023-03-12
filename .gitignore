@@ -4,6 +4,8 @@ results/
 # logs
 runs/
 
+runs_*/
+
 # vscode
 .vscode/
 

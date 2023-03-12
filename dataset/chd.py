@@ -78,21 +78,9 @@ class CHD(Dataset):
             # pad image
             img, coord = pad_and_or_crop(img, self.patch_size, mode='random')
             label, _  = pad_and_or_crop(label, self.patch_size, mode='fixed', coords=coord)
-            # the image and label should be [batch, c, x, y, z], this is the adapatation for using batchgenerators :)
-            data_dict = {'data':img[None, None], 'seg':label[None, None]}
-            tr_transforms = []
-            tr_transforms.append(MirrorTransform((0, 1)))
-            tr_transforms.append(RndTransform(SpatialTransform(self.patch_size, list(np.array(self.patch_size)//2),
-                                                            True, (100., 350.), (14., 17.),
-                                                            True, (0, 2.*np.pi), (-0.000001, 0.00001), (-0.000001, 0.00001),
-                                                            True, (0.7, 1.3), 'constant', 0, 3, 'constant', 0, 0,
-                                                            random_crop=False), prob=0.67, alternative_transform=RandomCropTransform(self.patch_size)))
+            # No augmentation is used in the finetuning because augmention could hurt the performance.
+            return img[None], label[None]
 
-            train_transform = Compose(tr_transforms)
-            data_dict = train_transform(**data_dict)
-            img = data_dict.get('data')[0]
-            label = data_dict.get('seg')[0]
-            return img, label
         else:
             # resize image
             img, coord = pad_and_or_crop(img, self.patch_size, mode='centre')

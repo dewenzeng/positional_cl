@@ -15,12 +15,16 @@ CUDA_VISIBLE_DEVICES=0,1 python train_contrast.py --device cuda:0 --batch_size 3
 
 # supervised finetuning
 # train from scratch on chd dataset using 40 samples.
-CUDA_VISIBLE_DEVICES=0 python train_supervised.py --device cuda:0 --batch_size 10 --epochs 100 --data_dir your_data_dir --lr 1e-4 --min_lr 1e-6 --dataset chd --patch_size 512 512 \
+CUDA_VISIBLE_DEVICES=0 python train_supervised.py --device cuda:0 --batch_size 10 --epochs 100 --data_dir your_data_dir --lr 5e-5 --min_lr 1e-6 --dataset chd --patch_size 512 512 \
 --experiment_name supervised_chd_scratch_sample_40_ --initial_filter_size 32 --classes 8 --enable_few_data --sampling_k 40
 
 # train from pcl pretrained on chd dataset using 40 samples.
-CUDA_VISIBLE_DEVICES=0 python train_supervised.py --device cuda:0 --batch_size 10 --epochs 100 --data_dir your_data_dir --lr 1e-4 --min_lr 1e-6 --dataset chd --patch_size 512 512 \
+CUDA_VISIBLE_DEVICES=0 python train_supervised.py --device cuda:0 --batch_size 10 --epochs 100 --data_dir your_data_dir --lr 5e-5 --min_lr 1e-6 --dataset chd --patch_size 512 512 \
 --experiment_name supervised_chd_pcl_sample_40_ --initial_filter_size 32 --classes 8 --enable_few_data --sampling_k 40 \
 --restart --pretrained_model_path your_pretrained_model_path
+
+# transfer from acdc pretrained to HVSMR using 6 samples.
+CUDA_VISIBLE_DEVICES=0 python train_supervised.py --device cuda:0 --batch_size 10 --epochs 100 --data_dir your_data_dir --lr 5e-5 --min_lr 5e-6 --dataset hvsmr --patch_size 352 352 \
+--experiment_name supervised_hvsmr_pcl_sample_6_ --initial_filter_size 48 --classes 3 --enable_few_data --sampling_k 6 --restart --pretrained_model_path your_pretrained_model_path
 
 # Note: For ACDC and HVSMR, we use initial_filter_size 48 to align with the work one sota https://github.com/MIC-DKFZ/ACDC2017. For CHD and MMWHS, we use initial_filter_size 32
