@@ -2,6 +2,22 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 def pad_if_too_small(image, new_shape, pad_value=None):
+  """Padding a image according to the new shape.
+
+  The result shape will be [max(image[0], new_shape[0]), max(image[1], new_shape[1])].
+  e.g., 
+  1. image:[10,20], new_shape:(30,30), the res shape is [30,30].
+  2. image:[10,20], new_shape:(10,10), the res shape is [10,20].
+  3. image:[3,10,20], new_shape:(3,20,20), the res shape is [3,20,20].
+  
+  Args:
+    image: a numpy array.
+    new_shape: a tuple, # elements should be the same as the image.
+    pad_value: padding value, default to 0.
+
+  Returns:
+    res: a numpy array.
+  """
   shape = tuple(list(image.shape))
   new_shape = tuple(np.max(np.concatenate((shape, new_shape)).reshape((2, len(shape))), axis=0))
   if pad_value is None:
