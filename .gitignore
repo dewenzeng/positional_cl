@@ -16,3 +16,5 @@ test.py
 __pycache__
 
 run.sh
+
+.DS_Store

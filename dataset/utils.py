@@ -67,6 +67,39 @@ def pad_and_or_crop(orig_data, new_shape, mode=None, coords=None):
 
   return data, (h_c, w_c)
 
+def pad_and_or_crop_3d(orig_data, new_shape, mode=None, coords=None):
+  # Normally, we wound keep the depth dim unchanged.
+  # e.g., [5, 120, 120] -> [5, 100, 100]
+
+  data = pad_if_too_small(orig_data, new_shape, pad_value=0)
+
+  d, h, w = data.shape
+  if mode == "centre":
+    h_c = int(h / 2.)
+    w_c = int(w / 2.)
+  elif mode == "fixed":
+    assert (coords is not None)
+    h_c, w_c = coords
+  elif mode == "random":
+    h_c_min = int(new_shape[1] / 2.)
+    w_c_min = int(new_shape[2] / 2.)
+
+    if new_shape[1] % 2 == 1:
+      h_c_max = h - 1 - int(new_shape[1] / 2.)
+      w_c_max = w - 1 - int(new_shape[2] / 2.)
+    else:
+      h_c_max = h - int(new_shape[1] / 2.)
+      w_c_max = w - int(new_shape[2] / 2.)
+
+    h_c = np.random.randint(low=h_c_min, high=(h_c_max + 1))
+    w_c = np.random.randint(low=w_c_min, high=(w_c_max + 1))
+
+  h_start = h_c - int(new_shape[1] / 2.)
+  w_start = w_c - int(new_shape[2] / 2.)
+  data = data[:, h_start:(h_start + new_shape[1]), w_start:(w_start + new_shape[2])]
+
+  return data, (h_c, w_c)
+
 def matplotlib_imshow(img, one_channel=False):
     if one_channel:
         img = img.mean(dim=0)

@@ -2,9 +2,9 @@ import os
 from datetime import datetime
 from utils import *
 import random
-from network.unet2d import UNet2D
+from network.unet3d import UNet3D
 from dataset.chd import CHD
-from dataset.acdc import ACDC
+from dataset.acdc_3d import ACDC_3D
 from dataset.mmwhs import MMWHS
 from dataset.hvsmr import HVSMR
 import torch.nn.functional as F
@@ -31,7 +31,7 @@ def run(fold, writer, args):
     args.model_result_dir = model_result_dir
     # create model
     logger.print("creating model ...")
-    model = UNet2D(in_channels=1, initial_filter_size=args.initial_filter_size, kernel_size=3, classes=args.classes, do_instancenorm=True)
+    model = UNet3D(in_channels=1, initial_filter_size=args.initial_filter_size, kernel_size=3, classes=args.classes, do_instancenorm=True)
     if args.restart:
         logger.print('loading from saved model ' + args.pretrained_model_path)
         dict = torch.load(args.pretrained_model_path,
@@ -73,8 +73,8 @@ def run(fold, writer, args):
             train_keys = random.sample(list(train_keys), k=args.sampling_k)
         logger.print(f'train_keys:{train_keys}')
         logger.print(f'val_keys:{val_keys}')
-        train_dataset = ACDC(keys=train_keys, purpose='train', args=args)
-        validate_dataset = ACDC(keys=val_keys, purpose='val', args=args)
+        train_dataset = ACDC_3D(keys=train_keys, purpose='train', args=args)
+        validate_dataset = ACDC_3D(keys=val_keys, purpose='val', args=args)
     elif args.dataset == 'hvsmr':
         train_keys, val_keys = get_split_hvsmr(fold, args.cross_vali_num)
         if args.enable_few_data:
@@ -95,9 +95,9 @@ def run(fold, writer, args):
     for epoch in range(args.epochs):
         # train for one epoch
         train_loss, train_dice = train(train_loader, model, criterion, epoch, optimizer, scheduler, logger, args)
-        writer.add_scalar('training_loss/fold'+str(fold), train_loss, epoch)
-        writer.add_scalar('training_dice/fold'+str(fold), train_dice, epoch)
-        writer.add_scalar('learning_rate/fold'+str(fold), optimizer.param_groups[0]['lr'], epoch)
+        writer.add_scalar('training_loss_fold'+str(fold), train_loss, epoch)
+        writer.add_scalar('training_dice_fold'+str(fold), train_dice, epoch)
+        writer.add_scalar('learning_rate_fold'+str(fold), optimizer.param_groups[0]['lr'], epoch)
         if (epoch % 2 == 0):
             # evaluate for one epoch
             val_dice = validate(validate_loader, model, epoch, logger, args)
@@ -111,8 +111,8 @@ def run(fold, writer, args):
                 best_dice = val_dice
                 save_dict = {"net": model.state_dict()}
                 torch.save(save_dict, os.path.join(args.model_result_dir, "best.pth"))
-            writer.add_scalar('validate_dice/fold'+str(fold), val_dice, epoch)
-            writer.add_scalar('best_dice/fold'+str(fold), best_dice, epoch)
+            writer.add_scalar('validate_dice_fold'+str(fold), val_dice, epoch)
+            writer.add_scalar('best_dice_fold'+str(fold), best_dice, epoch)
             # save model
             save_dict = {"net": model.state_dict()}
             torch.save(save_dict, os.path.join(args.model_result_dir, "latest.pth"))

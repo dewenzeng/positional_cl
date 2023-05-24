@@ -13,7 +13,7 @@ parser.add_argument('--runs_dir', default='./runs', help='runs dir')
 
 # Data
 parser.add_argument("--dataset", type=str, default="chd", help='can be chd, acdc, mmwhs, hvsmr')
-parser.add_argument("--data_dir", type=str, default="/afs/crc.nd.edu/user/d/dzeng2/data/acdc/preprocessed_data/2D/")
+parser.add_argument("--data_dir", type=str, default="/afs/crc.nd.edu/user/d/dzeng2/data/acdc/acdc_contrastive/supervised/2d")
 parser.add_argument('--batch_size', type=int, default=5)
 parser.add_argument('--seed', type=int, default=1234)
 parser.add_argument("--enable_few_data", default=False, action='store_true')
@@ -47,6 +47,7 @@ parser.add_argument("--contrastive_method", type=str, default='simclr', help='si
 # Loss
 parser.add_argument("--temp", type=float, default=0.1)
 parser.add_argument("--slice_threshold", type=float, default=0.05)
+parser.add_argument("-f", "--fff", help="a dummy argument to fool ipython", default="1")
 
 def save_args(obj, defaults, kwargs):
     for k,v in defaults.iteritems():
