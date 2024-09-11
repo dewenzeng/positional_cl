@@ -7,8 +7,8 @@ Implementation of paper in 'Positional Contrastive Learning for Volumetric Medic
 </p>
 
 ### Dataset
- - Congenital Heart Disease (CHD) dataset, CT, [link](https://github.com/XiaoweiXu/Whole-heart-and-great-vessel-segmentation-of-chd_segmentation)
- - MMWHS dataset, CT, [link](http://www.sdspeople.fudan.edu.cn/zhuangxiahai/0/mmwhs/)
+ - Congenital Heart Disease (CHD) dataset, CT, [link](https://www.kaggle.com/datasets/xiaoweixumedicalai/chd68-segmentation-dataset-miccai19)
+ - MMWHS dataset, CT, [link](https://zmiclab.github.io/zxh/0/mmwhs/)
  - ACDC dataset, MRI, [link](https://www.creatis.insa-lyon.fr/Challenge/acdc/databases.html)
  - HVSMR dataset, MRI, [link](http://segchd.csail.mit.edu/)
 
